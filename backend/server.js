@@ -7,7 +7,14 @@ require("dotenv").config();
 const app = express();
 
 /* ---------- MIDDLEWARE ---------- */
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://shubh-construction.vercel.app",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
