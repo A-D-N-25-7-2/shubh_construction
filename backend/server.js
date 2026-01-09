@@ -75,13 +75,17 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     /* ---------- BREVO SMTP CONFIG ---------- */
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: false, // IMPORTANT for Brevo (587)
+      port: process.env.SMTP_PORT,
+      secure: false, // MUST be false for 587
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
+
 
     // Verify SMTP connection
     await transporter.verify();
@@ -109,7 +113,19 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       ],
     };
 
-    await transporter.sendMail(mailOptions);
+    await transporter.sendMail({
+      from: `"Careers" <${process.env.SMTP_USER}>`,
+      to: email, // user entered email
+      subject: "Job Application Received",
+      html: "<h3>Your application is received</h3>",
+      attachments: [
+        {
+          filename: resume.originalname,
+          path: resume.path,
+        },
+      ],
+    });
+
 
     return res.status(200).json({
       message: "Job application submitted successfully ✅",
