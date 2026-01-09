@@ -16,15 +16,32 @@ app.get("/", (req, res) => {
   res.send("Backend is running properly");
 });
 
-/* ---------- MULTER (MEMORY STORAGE) ---------- */
+/* ---------- MULTER (MEMORY STORAGE + FILE FILTER) ---------- */
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only PDF, DOC, DOCX files are allowed"));
+    }
+  },
 });
 
 /* ---------- API ---------- */
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
+    console.log("CONTENT-TYPE:", req.headers["content-type"]);
+    console.log("BODY:", req.body);
+    console.log("FILE:", req.file ? req.file.originalname : "NO FILE");
+
     const {
       fullname,
       email,
@@ -36,6 +53,11 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
 
     if (!req.file) {
       return res.status(400).json({ message: "Resume file missing" });
+    }
+
+    /* ---------- ENV CHECK (IMPORTANT FOR RENDER) ---------- */
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      throw new Error("Email environment variables not set");
     }
 
     /* ---------- MAIL CONFIG ---------- */
@@ -74,10 +96,13 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
 
     await transporter.sendMail(mailOptions);
 
-    res.status(200).json({ message: "Application sent successfully" });
+    return res.status(200).json({ message: "Application sent successfully" });
   } catch (error) {
-    console.error("MAIL ERROR 👉", error);
-    res.status(500).json({ message: "Mail failed" });
+    console.error("MAIL ERROR 👉", error.message);
+
+    return res.status(500).json({
+      message: error.message || "Mail failed",
+    });
   }
 });
 
