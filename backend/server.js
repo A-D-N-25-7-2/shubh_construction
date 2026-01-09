@@ -2,31 +2,27 @@ const express = require("express");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const fs = require("fs");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());
 
+/* ---------- MIDDLEWARE ---------- */
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* ---------- TEST ROUTE ---------- */
 app.get("/", (req, res) => {
   res.send("Backend is running properly");
 });
 
-if (!fs.existsSync("uploads")) {
-  fs.mkdirSync("uploads");
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + "-" + file.originalname);
-  },
+/* ---------- MULTER (MEMORY STORAGE) ---------- */
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
 });
 
-const upload = multer({ storage });
-
+/* ---------- API ---------- */
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
     const {
@@ -42,13 +38,18 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       return res.status(400).json({ message: "Resume file missing" });
     }
 
+    /* ---------- MAIL CONFIG ---------- */
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
     });
+
+    await transporter.verify();
 
     const mailOptions = {
       from: `"Careers - Shubh Construction" <${process.env.EMAIL_USER}>`,
@@ -66,7 +67,7 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       attachments: [
         {
           filename: req.file.originalname,
-          path: req.file.path,
+          content: req.file.buffer,
         },
       ],
     };
@@ -75,13 +76,13 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
 
     res.status(200).json({ message: "Application sent successfully" });
   } catch (error) {
-    console.error("Mail error:", error);
+    console.error("MAIL ERROR 👉", error);
     res.status(500).json({ message: "Mail failed" });
   }
 });
 
+/* ---------- SERVER ---------- */
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`Backend running on port ${PORT}`);
 });
