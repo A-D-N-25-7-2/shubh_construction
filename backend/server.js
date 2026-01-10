@@ -2,7 +2,13 @@
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
-const mailjet = require("node-mailjet");
+let mailjet;
+try {
+  mailjet = require("node-mailjet");
+} catch (err) {
+  console.error("Module 'node-mailjet' not found. Please run 'npm install node-mailjet'.");
+  process.exit(1);
+}
 require("dotenv").config();
 
 const app = express();
@@ -39,7 +45,11 @@ const upload = multer({
 });
 
 // ---------- Mailjet Client ----------
-const mj = mailjet.connect(
+if (!process.env.MJ_APIKEY_PUBLIC || !process.env.MJ_APIKEY_PRIVATE) {
+  console.error("Mailjet API keys missing in environment variables.");
+  process.exit(1);
+}
+const mj = mailjet.apiConnect(
   process.env.MJ_APIKEY_PUBLIC,
   process.env.MJ_APIKEY_PRIVATE
 );
