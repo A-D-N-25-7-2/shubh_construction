@@ -6,26 +6,22 @@ require("dotenv").config();
 
 const app = express();
 
-/* ---------- CORS ---------- */
 app.use(
   cors({
-    origin: "https://shubh-construction.vercel.app",
+    origin: process.env.CORS_ORIGIN || "https://shubh-construction.vercel.app",
     methods: ["GET", "POST"],
   })
 );
 
-/* ---------- TEST ---------- */
 app.get("/", (req, res) => {
   res.send("Backend is running properly ✅");
 });
 
-/* ---------- MULTER (MEMORY) ---------- */
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     const ext = file.originalname.toLowerCase();
-
     if (
       ext.endsWith(".pdf") ||
       ext.endsWith(".doc") ||
@@ -36,9 +32,8 @@ const upload = multer({
       cb(new Error("Only PDF, DOC, DOCX files allowed"));
     }
   },
-
 });
-/* ---------- API ---------- */
+
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
     if (!req.file) {
@@ -54,7 +49,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       position,
     } = req.body;
 
-    /* ---------- SMTP ---------- */
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
@@ -65,8 +59,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       },
     });
 
-
-    /* ---------- COMPANY MAIL ---------- */
     await transporter.sendMail({
       from: `"Careers - Shubh Construction" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
@@ -89,7 +81,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       ],
     });
 
-    /* ---------- USER CONFIRMATION MAIL ---------- */
     await transporter.sendMail({
       from: `"Shubh Construction" <${process.env.SMTP_USER}>`,
       to: email,
@@ -114,7 +105,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   }
 });
 
-/* ---------- SERVER ---------- */
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Backend running on port ${PORT}`);
