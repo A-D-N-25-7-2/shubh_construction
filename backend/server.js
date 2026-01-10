@@ -1,19 +1,11 @@
-// backend/server.js
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
-let mailjet;
-try {
-  mailjet = require("node-mailjet");
-} catch (err) {
-  console.error("Module 'node-mailjet' not found. Please run 'npm install node-mailjet'.");
-  process.exit(1);
-}
+const mailjet = require("node-mailjet");
 require("dotenv").config();
 
 const app = express();
 
-// ---------- CORS ----------
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN || "https://shubh-construction.vercel.app",
@@ -21,16 +13,13 @@ app.use(
   })
 );
 
-// ---------- JSON Parsing ----------
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ---------- Test Route ----------
 app.get("/", (req, res) => {
   res.send("Backend is running properly ✅");
 });
 
-// ---------- Multer (Memory Storage) ----------
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 5 * 1024 * 1024 }, // 5MB max
@@ -44,34 +33,25 @@ const upload = multer({
   },
 });
 
-// ---------- Mailjet Client ----------
-if (!process.env.MJ_APIKEY_PUBLIC || !process.env.MJ_APIKEY_PRIVATE) {
-  console.error("Mailjet API keys missing in environment variables.");
-  process.exit(1);
-}
-const mj = mailjet.apiConnect(
+const mj = mailjet.connect(
   process.env.MJ_APIKEY_PUBLIC,
   process.env.MJ_APIKEY_PRIVATE
 );
 
-// ---------- Job Application Route ----------
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
     if (!req.file) return res.status(400).json({ message: "Resume file missing" });
 
     const { fullname, email, mobile, total_experience, current_employer, position } = req.body;
 
-    // Basic validations
     if (!fullname || !email || !mobile || !total_experience || !current_employer || !position)
       return res.status(400).json({ message: "All fields are required." });
 
     if (!/^\S+@\S+\.\S+$/.test(email)) return res.status(400).json({ message: "Invalid email address." });
     if (!/^\+?\d{10,}$/.test(mobile)) return res.status(400).json({ message: "Invalid mobile number." });
 
-    // Prepare attachment
     const attachment = Buffer.from(req.file.buffer).toString("base64");
 
-    // ---------- Send Email to Company ----------
     const companyMail = {
       Messages: [
         {
@@ -98,7 +78,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       ],
     };
 
-    // ---------- Send Confirmation Email to Applicant ----------
     const applicantMail = {
       Messages: [
         {
@@ -116,7 +95,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       ],
     };
 
-    // Send emails
     await mj.post("send", { version: "v3.1" }).request(companyMail);
     await mj.post("send", { version: "v3.1" }).request(applicantMail);
 
