@@ -65,7 +65,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       },
     });
 
-    await transporter.verify();
 
     /* ---------- COMPANY MAIL ---------- */
     await transporter.sendMail({
