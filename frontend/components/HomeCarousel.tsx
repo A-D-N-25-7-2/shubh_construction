@@ -14,7 +14,7 @@ const SLIDES = [
     name: "Bharat Talpada",
     designation: "Founder",
     phone: "+91 91069 40724",
-    email: "bharat@shubhconstruction.com",
+    email: "j.talpada@shubhconstructions.com",
     direction: "ltr",
   },
   {
@@ -24,7 +24,7 @@ const SLIDES = [
     name: "Jagdish Vaghela",
     designation: "Billing & Planning Engineer",
     phone: "+91 99096 83275",
-    email: "jagdish@shubhconstruction.com",
+    email: "jagdish@shubhconstructions.com",
     direction: "rtl",
   },
   {
@@ -34,7 +34,7 @@ const SLIDES = [
     name: "Amar Singh",
     designation: "Site Incharge",
     phone: "+91 87564 59152",
-    email: "amar@shubhconstruction.com",
+    email: "amar@shubhconstructions.com",
     direction: "ltr",
   },
   // {
@@ -143,7 +143,8 @@ export default function HeroCarousel() {
           md:mt-6
           md:absolute md:bottom-20
           text-left
-          ${current !== 1 && "pl-46"}
+          ${current === 2 && "pl-38"}
+          ${current === 0 && "pl-30"}
           md:ml-[8rem]
           ${current !== 1 ? "md:ml-[55%]" : ""}
         `}
@@ -154,21 +155,21 @@ export default function HeroCarousel() {
               >
                 <div
                   className="flex flex-col gap-x-6
-                  px-6"
+                  px-1"
                 >
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-[13px] text-white">
                     {SLIDES[current].name}
                   </span>
 
-                  <span className="text-sm  text-gray-300">
+                  <span className="md:text-sm text-[12px] text-gray-300">
                     {SLIDES[current].designation}
                   </span>
 
-                  <span className="flex items-center gap-2 text-sm text-white">
-                    <Phone color="white" size={14} /> {SLIDES[current].phone}
+                  <span className="flex items-center  text-[12px] gap-2 md:text-sm text-white">
+                    <Phone color="white" size={12} /> {SLIDES[current].phone}
                   </span>
 
-                  <span className="text-sm text-white">
+                  <span className="md:text-sm whitespace-nowrap text-[12px] text-white">
                     ✉ {SLIDES[current].email}
                   </span>
                 </div>

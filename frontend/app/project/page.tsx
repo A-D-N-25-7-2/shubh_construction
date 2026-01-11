@@ -6,7 +6,7 @@ import React from 'react'
 const ExpInfo = [
   {
     title: "Completed Projects",
-    value: "150+"
+    value: "100+"
   },
   {
     title: "Years of Experience",
@@ -14,7 +14,7 @@ const ExpInfo = [
   },
   {
     title: "Satisfied Clients",
-    value: "120+"
+    value: "90+"
   },
   {
     title: "Timely Deliveries",
