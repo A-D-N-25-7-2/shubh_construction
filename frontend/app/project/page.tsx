@@ -26,8 +26,7 @@ const page = () => {
     <main>
       {/* Hero Section */}
       <section
-        className="bg-[#1c1f26] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/bg4.png')" }}
+        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
       >
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
@@ -61,11 +60,11 @@ const page = () => {
         ))}
       </section>
       {/* Projects Gallery Section */}
-      <section style={{ backgroundImage: "url('/bgc.jpg')" }}>
+      <section className="bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat">
         <AnimateOnScroll direction="up" delay={0.3}>
           <div className="text-center px-8 pt-16 md:pt-24 space-y-3">
             <h2
-              className="text-3xl md:text-4xl font-bold"
+              className="text-3xl md:text-4xl text-red-700 font-bold"
               id="projects-heading"
             >
               Featured Projects
@@ -98,7 +97,7 @@ const page = () => {
             Get in Touch
           </Link>
         </AnimateOnScroll>
-   </section>
+      </section>
     </main>
   );
 }

@@ -64,8 +64,7 @@ const page = () => {
       {/* Hero Section */}
 
       <section
-        className="bg-[#1c1f26] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/bg4.png')" }}
+        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
       >
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
@@ -81,14 +80,13 @@ const page = () => {
 
       {/* Services Section */}
       <section
-        className="py-16 md:py-24"
+        className="py-16 md:py-24 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat"
         aria-labelledby="services-offer-heading"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
       >
         <AnimateOnScroll direction="up" delay={0.2}>
           <div className="text-center px-2 md:px-35 lg:px-70">
             <h2
-              className="text-3xl md:text-4xl font-bold mb-4"
+              className="text-3xl md:text-4xl text-red-700 font-bold mb-4"
               id="services-offer-heading"
             >
               What We Offer
@@ -132,9 +130,9 @@ const page = () => {
 
       {/*Process Section */}
 
-      <section className="bg-gray-100 p-9 md:px-24 md:py-14">
+      <section className="bg-gray-50 p-9 md:px-24 md:py-14">
         <AnimateOnScroll direction="up" delay={0.2}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center md:px-14 mb-4">
+          <h2 className="text-3xl md:text-4xl text-red-700 font-bold text-center md:px-14 mb-4">
             Our Process
           </h2>
           <p className="text-gray-500 text-lg text-center max-w-2xl mx-auto">
@@ -167,10 +165,7 @@ const page = () => {
       </section>
 
       {/*Get a Quote Section */}
-      <section
-        className="text-center py-18 px-4 md:px-30 lg:px-60 lg:py-24"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
-      >
+      <section className="text-center bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat py-18 px-4 md:px-30 lg:px-60 lg:py-24">
         <AnimateOnScroll direction="up" delay={0.2}>
           <div className="bg-[#1c1f26] text-white py-8 px-8 md:px-14 rounded-2xl md:py-12 shadow-2xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">

@@ -114,6 +114,24 @@ const ProjectCard = () => {
         type: "Industrial Project",
         location: "Birla Cellulose, Kharach",
       },
+      {
+        image: "DM N pit Raft casting.jpeg",
+        name: "DM N pit Raft casting",
+        type: "Industrial Project",
+        location: "Reliance, Dahej",
+      },
+      {
+        image: "DM plant work pooja.jpeg",
+        name: "DM plant work pooja",
+        type: "Industrial Project",
+        location: "Reliance, Dahej",
+      },
+      {
+        image: "Utility Building.jpeg",
+        name: "Utility Building",
+        type: "Industrial Project",
+        location: "Vital Synthesis Company, Dahej",
+      },
     ];
 
   return (

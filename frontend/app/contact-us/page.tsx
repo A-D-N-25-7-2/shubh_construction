@@ -69,9 +69,7 @@ const Page = () => {
     <main>
       {/* Hero Section */}
       <section
-        className="bg-[#1c1f26] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/bg4.png')" }}
-      >
+        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -84,10 +82,7 @@ const Page = () => {
         </AnimateOnScroll>
       </section>
       {/* Send a Message and Contact Info */}
-      <section
-        className="py-14 px-4 md:py-18 md:px-12 space-y-12 grid grid-cols-1 md:grid-cols-2 md:gap-12"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
-      >
+      <section className="py-14 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat px-4 md:py-18 md:px-12 space-y-12 grid grid-cols-1 md:grid-cols-2 md:gap-12">
         <AnimateOnScroll direction="right" delay={0.4}>
           <form
             className="flex flex-col gap-6"
@@ -95,7 +90,9 @@ const Page = () => {
             onSubmit={handleSubmit}
             autoComplete="off"
           >
-            <h2 className="text-3xl font-bold">Send us a Message</h2>
+            <h2 className="text-3xl text-red-700 font-bold">
+              Send us a Message
+            </h2>
             <address className="not-italic grid gap-6">
               {/* Full Name */}
               <div className="flex flex-col gap-1">
@@ -106,7 +103,7 @@ const Page = () => {
                   type="text"
                   name="name"
                   placeholder="Enter your Full Name"
-                  className="border focus:border-2 border-gray-300 rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                   required
                 />
               </div>
@@ -119,7 +116,7 @@ const Page = () => {
                   type="email"
                   name="email"
                   placeholder="your.email@gmail.com"
-                  className="border focus:border-2 border-gray-300 rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                   required
                 />
               </div>
@@ -132,7 +129,7 @@ const Page = () => {
                   type="text"
                   name="phone"
                   placeholder="+91 12345 67890"
-                  className="border focus:border-2 border-gray-300 rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                 />
               </div>
               {/* Your Message */}
@@ -143,7 +140,7 @@ const Page = () => {
                 <textarea
                   name="message"
                   placeholder="Your Message....."
-                  className="border focus:border-2 border-gray-300 rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300 resize-none"
+                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300 resize-none"
                   rows={6}
                   required
                 />
@@ -164,7 +161,7 @@ const Page = () => {
         </AnimateOnScroll>
         <AnimateOnScroll direction="left" delay={0.6}>
           <div className="flex flex-col gap-6 ">
-            <h2 className="text-3xl font-bold">Get in Touch</h2>
+            <h2 className="text-3xl text-red-700 font-bold">Get in Touch</h2>
             <h2 className="text-gray-500">
               We believe every successful project begins with clear
               communication—get in touch and let’s discuss your vision.
@@ -172,7 +169,7 @@ const Page = () => {
             {ContactDetails.map((detail, index) => {
               const Content = (
                 <>
-                  <detail.icon className="text-5xl p-3 shrink-0 text-red-700 bg-red-100 rounded-lg hover:scale-115 transition-all duration-300" />
+                  <detail.icon className="text-5xl p-3 shrink-0 text-red-700 bg-red-200 rounded-lg hover:scale-115 transition-all duration-300" />
 
                   <div>
                     <h3 className="font-bold mb-1">{detail.title}</h3>

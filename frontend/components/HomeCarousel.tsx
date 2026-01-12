@@ -93,7 +93,7 @@ export default function HeroCarousel() {
             alt={slide.alt}
             fill
             priority={index === 0}
-            className="object-cover"
+            className="w-full h-full object-cover object-top"
           />
         </div>
       ))}
@@ -124,11 +124,11 @@ export default function HeroCarousel() {
                     animation: "slideInLeft 0.7s ease-out 0.2s both",
                   }}
                   className={`
-            text-lg md:text-3xl ml-24 mx-12
+            text-lg lg:text-3xl md:text-2xl ml-20 mx-12
             text-black font-extrabold leading-relaxed
             md:text-left
             md:ml-[5rem]
-            ${current !== 1 ? "md:ml-[45%]" : ""}
+            ${current !== 1 ? "md:ml-[45%]" : "md:ml-[8%]"}
           `}
                 >
                   {SLIDES[current].text}
@@ -146,7 +146,7 @@ export default function HeroCarousel() {
           ${current === 2 && "pl-38"}
           ${current === 0 && "pl-30"}
           md:ml-[8rem]
-          ${current !== 1 ? "md:ml-[55%]" : ""}
+          ${current !== 1 ? "md:ml-[45%]" : ""}
         `}
                 key={current}
                 style={{

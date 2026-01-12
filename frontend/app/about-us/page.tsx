@@ -33,10 +33,7 @@ const Page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section
-        className="pt-33 pb-16 bg-center bg-cover bg-no-repeat "
-        style={{ backgroundImage: "url('/bg4.png')" }}
-      >
+      <section className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat ">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -51,9 +48,8 @@ const Page = () => {
 
       {/* History Section */}
       <section
-        className="py-16 md:py-24"
+        className="py-16 md:py-24 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat"
         aria-labelledby="history-heading"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
       >
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
           <AnimateOnScroll direction="left" delay={0.2}>
@@ -94,7 +90,7 @@ const Page = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="bg-gray-100 py-16 md:py-19 lg:px-14">
+      <section className="bg-gray-50 py-16 md:py-19 lg:px-14">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-4 lg:gap-8">
           {AboutUsInfo.map((section, index) => (
             <AnimateOnScroll
@@ -109,7 +105,7 @@ const Page = () => {
               >
                 <section.icon
                   aria-hidden="true"
-                  className="text-red-600 text-5xl mb-4 bg-red-100 p-3 rounded-md"
+                  className="text-red-700 text-5xl mb-4 bg-red-200 p-3 rounded-md"
                 />
                 <h3 className="text-2xl text-red-700 font-bold mb-4">
                   {section.title}
@@ -124,13 +120,10 @@ const Page = () => {
       </section>
 
       {/* Core Values */}
-      <section
-        className="py-16 md:py-24"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
-      >
+      <section className="py-16 md:py-24 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat">
         <AnimateOnScroll direction="up" delay={0.2}>
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <h2 className="text-3xl text-red-700 md:text-4xl font-bold mb-4">
               Our Core Values
             </h2>
             <p className="text-gray-500 text-lg mb-12">
@@ -152,7 +145,7 @@ const Page = () => {
                 >
                   <TiTickOutline
                     aria-hidden="true"
-                    className="text-red-600 text-5xl bg-red-100 p-3 rounded-full"
+                    className="text-red-700 text-5xl bg-red-200 p-3 rounded-full"
                   />
                   <h3 className="text-xl text-red-700 font-semibold">
                     {value.title}
@@ -169,8 +162,10 @@ const Page = () => {
       <section className="bg-gray-50 py-16">
         <AnimateOnScroll direction="up" delay={0.2}>
           <div className="container mx-auto px-4 text-center max-w-3xl">
-            <IoRibbonOutline className="text-red-600 text-6xl mx-auto mb-4 md:text-7xl bg-red-100 p-4 rounded-full" />
-            <h2 className="text-3xl font-bold mb-4">Certified & Experienced</h2>
+            <IoRibbonOutline className="text-red-700 text-6xl mx-auto mb-4 md:text-7xl bg-red-200 p-4 rounded-full" />
+            <h2 className="text-3xl text-red-700 font-bold mb-4">
+              Certified & Experienced
+            </h2>
             <p className="text-gray-500 text-lg leading-relaxed">
               Our team holds all necessary licenses and certifications required
               for civil construction work. We strictly follow industry standards

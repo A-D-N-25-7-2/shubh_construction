@@ -66,8 +66,7 @@ const Page = () => {
     <main>
       {/* Hero Section */}
       <section
-        className="bg-[#1c1f26] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-        style={{ backgroundImage: "url('/bg4.png')" }}
+        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
       >
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
@@ -81,14 +80,11 @@ const Page = () => {
         </AnimateOnScroll>
       </section>
 
-      <section
-        className="py-14 px-4 md:py-18 md:px-12 space-y-12 grid grid-cols-1 md:grid-cols-2 md:gap-12"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
-      >
+      <section className="py-14 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat px-4 md:py-18 md:px-12 space-y-12 grid grid-cols-1 md:grid-cols-2 md:gap-12">
         {/* Left Content */}
         <AnimateOnScroll direction="right" delay={0.2}>
           <div className="space-y-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-red-700">
               Build Your Career With Us
             </h2>
             <p className="text-gray-600 leading-relaxed">
@@ -120,7 +116,7 @@ const Page = () => {
             </ul>
           </div>
           <section className="mt-10 space-y-6">
-            <h2 className="text-2xl font-bold md:text-3xl">
+            <h2 className="text-2xl font-bold text-red-700 md:text-3xl">
               Frequently Asked Questions
             </h2>
             <div>
@@ -138,8 +134,8 @@ const Page = () => {
               </p>
             </div>
           </section>
-          <p className="text-sm text-gray-500 mt-6">
-            Job Location: Bharuch, Gujarat, India
+          <p className="text-sm text-gray-600 mt-6">
+            Job Location: Gujarat, India
           </p>
         </AnimateOnScroll>
 
@@ -152,7 +148,7 @@ const Page = () => {
             onSubmit={handleSubmit}
             noValidate
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 className="text-2xl md:text-3xl font-bold text-red-700">
               Apply Here
             </h2>
             {JobApp.map((item, index) => (
@@ -176,7 +172,7 @@ const Page = () => {
                   id={item.name}
                   name={item.name}
                   placeholder={item.example}
-                  className="border focus:border-2 border-gray-300 rounded-md px-4 py-2
+                  className="border focus:border-2 border-black rounded-md px-4 py-2
                              focus:border-red-700 focus:outline-none
                              transition-colors duration-300"
                   required
@@ -190,7 +186,7 @@ const Page = () => {
                 </label>
                 <select
                   name="position"
-                  className="border border-gray-300 rounded-md px-6 py-2
+                  className="border border-black rounded-md px-6 py-2
                              focus:border-red-700 transition-colors duration-300"
                   required
                 >
@@ -207,6 +203,8 @@ const Page = () => {
                   <option value="Carpenter">Carpenter</option>
                   <option value="Fitter">Fitter</option>
                   <option value="Welder">Welder</option>
+                  <option value="Helper">Helper</option>
+                  <option value="Electrician">Electrician</option>
                 </select>
               </div>
               <div className="flex flex-col gap-1 flex-1 min-w-0">
@@ -217,7 +215,7 @@ const Page = () => {
                   type="file"
                   name="resume"
                   accept=".pdf,.doc,.docx"
-                  className="w-full border border-gray-300 rounded-md px-4 py-2
+                  className="w-full border border-black rounded-md px-4 py-2
                              focus:border-red-700 focus:outline-none
                              file:mr-3 file:py-2 file:px-4
                              file:border-0 file:rounded-md

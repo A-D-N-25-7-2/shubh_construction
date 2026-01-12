@@ -75,14 +75,13 @@ const page = () => {
       {/* */}
 
       <section
-        className="py-14"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
+        className="py-14 bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat"
         aria-labelledby="services-heading"
       >
         <AnimateOnScroll direction="up" delay={0.2}>
           <div className="text-center">
             <h2
-              className="text-3xl md:text-4xl font-semibold py-4"
+              className="text-3xl text-red-700 md:text-4xl font-semibold py-4"
               id="services-heading"
             >
               Our Services
@@ -150,13 +149,12 @@ const page = () => {
 
       <ClientCarousel />
 
-      <section
-        className="bg-white grid grid-cols-1 md:grid-cols-2 gap-10 px-4 py-16 md:py-24"
-        style={{ backgroundImage: "url('/bgc.jpg')" }}
-      >
+      <section className="bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat grid grid-cols-1 md:grid-cols-2 gap-10 px-4 py-16 md:py-24">
         <AnimateOnScroll direction="right" delay={0.6}>
           <div className=" space-y-6">
-            <h2 className="font-bold text-3xl md:text-4xl ">Why Choose Us</h2>
+            <h2 className="font-bold text-3xl text-red-700 md:text-4xl ">
+              Why Choose Us
+            </h2>
             <p className="text-gray-500 text-lg">
               With over 15 years of experience in the construction industry, we
               have established ourselves as a trusted name in civil

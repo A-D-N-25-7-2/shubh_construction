@@ -26,7 +26,7 @@ export default function ClientsCarousel() {
 ];
   return (
     <section
-      className="bg-gray-100 py-20 overflow-hidden"
+      className="bg-gray-50 py-20 overflow-hidden"
       aria-labelledby="clients-heading"
     >
       <div className="max-w-7xl mx-auto px-4">
@@ -34,7 +34,7 @@ export default function ClientsCarousel() {
         <AnimateOnScroll direction="up" delay={0.3}>
           <div className="mb-12">
             <h2
-              className="text-3xl md:text-4xl mb-6 text-center font-semibold text-gray-900"
+              className="text-3xl md:text-4xl text-red-700 mb-6 text-center font-semibold"
               id="clients-heading"
             >
               Our Esteemed Clients
