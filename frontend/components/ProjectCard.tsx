@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import { MapPin } from "lucide-react";
+import AnimateOnScroll from './AnimateOnScroll';
 
 
 const ProjectCard = () => {
@@ -135,32 +136,32 @@ const ProjectCard = () => {
     ];
 
   return (
-    <section
-      className="grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 lg:grid-cols-3"
-    >
+    <section className="grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 lg:grid-cols-3">
       {Projects.map((item, index) => (
-        <div
-          className="relative shadow-xl bg-white border-[1] border-gray-300 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-108 overflow-hidden"
-          key={index}
-        >
-          <Image
-            src={`/projects_photo/${item.image}`}
-            alt={`${item.name} – ${item.type} construction project by Shubh Construction`}
-            width={600}
-            height={400}
-            className="object-cover w-full h-2/3 cursor-pointer"
-          />
-          <div className="p-6 space-y-4">
-            <h3 className="font-bold text-xl">{item.name}</h3>
-            <div className="absolute flex space-x-2 items-center bottom-6">
-              <MapPin size={24} color="red" />
-              <p className="text-gray-500 text-sm">{item.location}</p>
+        <AnimateOnScroll direction="up" delay={0.2+((index/3)*0.2)} key={index}>
+          <div
+            className="relative shadow-xl bg-white border-[1] border-gray-300 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-108 overflow-hidden"
+            key={index}
+          >
+            <Image
+              src={`/projects_photo/${item.image}`}
+              alt={`${item.name} – ${item.type} construction project by Shubh Construction`}
+              width={600}
+              height={400}
+              className="object-cover w-full h-2/3 cursor-pointer"
+            />
+            <div className="p-6 space-y-4">
+              <h3 className="font-bold text-xl">{item.name}</h3>
+              <div className="absolute flex space-x-2 items-center bottom-6">
+                <MapPin size={24} color="red" />
+                <p className="text-gray-500 text-sm">{item.location}</p>
+              </div>
             </div>
+            <span className="absolute text-white text-sm bg-red-700 rounded-3xl px-2 py-1 top-4 right-4">
+              {item.type}
+            </span>
           </div>
-          <span className="absolute text-white text-sm bg-red-700 rounded-3xl px-2 py-1 top-4 right-4">
-            {item.type}
-          </span>
-        </div>
+        </AnimateOnScroll>
       ))}
     </section>
   );

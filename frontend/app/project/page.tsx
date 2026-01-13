@@ -1,8 +1,8 @@
 import AnimateOnScroll from '@/components/AnimateOnScroll';
 import ProjectCard from '@/components/ProjectCard';
 import Link from 'next/link';
-import React from 'react'
-
+import React from 'react';
+import Image from 'next/image';
 const ExpInfo = [
   {
     title: "Completed Projects",
@@ -21,13 +21,17 @@ const ExpInfo = [
     value: "95%"
   }
 ];
+const Certificates = [
+  {
+    image: "/projects_photo/C1.jpg",
+    alt: "ISO 9001-2015 Certificate for Quality Management Systems"
+  },
+]
 const page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section
-        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-      >
+      <section className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -60,7 +64,7 @@ const page = () => {
         ))}
       </section>
       {/* Projects Gallery Section */}
-      <section className="bg-[url('/bgc.jpg')] bg-cover bg-top bg-no-repeat">
+      <section className="bg-[url('/bgc.jpg')] bg-top bg-repeat">
         <AnimateOnScroll direction="up" delay={0.3}>
           <div className="text-center px-8 pt-16 md:pt-24 space-y-3">
             <h2
@@ -78,6 +82,34 @@ const page = () => {
         <div>
           <ProjectCard />
         </div>
+        <AnimateOnScroll direction="up" delay={0.3}>
+          <div className="text-center px-8 py-6 space-y-3">
+            <h2
+              className="text-3xl md:text-4xl text-red-700 font-bold"
+              id="projects-heading"
+            >
+              Our Certificates
+            </h2>
+            <p className="text-gray-500 md:px-40 lg:px-70 leading-relaxed text-lg">
+              We take pride in our certifications that reflect our commitment to
+              quality and excellence in construction
+            </p>
+          </div>
+        </AnimateOnScroll>
+        <AnimateOnScroll direction="up" delay={0.3}>
+          {Certificates.map((cert, index) => (
+            <div key={index} className="flex justify-center pb-10">
+              <div className="relative w-full max-w-md aspect-[3/2]">
+                <Image
+                  src={cert.image}
+                  alt={cert.alt}
+                  fill
+                  className="object-cover rounded-xl shadow-xl hover:scale-105 transition-all duration-300"
+                />
+              </div>
+            </div>
+          ))}
+        </AnimateOnScroll>
       </section>
       {/*Get in Touch*/}
       <section className="bg-gray-50 px-8 py-16 text-center space-y-3">

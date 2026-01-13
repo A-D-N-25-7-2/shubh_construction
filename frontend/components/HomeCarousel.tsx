@@ -8,7 +8,7 @@ import { Phone } from "lucide-react";
 
 const SLIDES = [
   {
-    image: "Bharat_Talpada1.jpg",
+    image: "Bharat-Talpada_Portrait.png",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "Good buildings come from good people, and all problems are solved by good design",
     name: "Bharat Talpada",
@@ -18,7 +18,7 @@ const SLIDES = [
     direction: "ltr",
   },
   {
-    image: "Jagdish_Vaghela.jpg",
+    image: "Jagdish-Vaghela_Portrait.png",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "An idea is salvation by imagination",
     name: "Jagdish Vaghela",
@@ -28,7 +28,7 @@ const SLIDES = [
     direction: "rtl",
   },
   {
-    image: "Amar_Singh1.jpg",
+    image: "Amarsinh_Portrait.png",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "The sun never knew how great it was until it hit the side of a building",
     name: "Amar Singh",
@@ -75,128 +75,95 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[600px] md:h-[700px] overflow-hidden w-full"
+      className="bg-[url('/projects_photo/BG.jpg')] bg-center bg-cover bg-no-repeat relative h-[600px] overflow-hidden w-full"
       role="banner"
     >
       {/* Slides */}
-      {SLIDES.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-[1400ms] ease-in-out ${
-            index === current ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <div className="absolute inset-0 z-10" />
-          <div className="md:h-20 bg-red-700 w-full"></div>
-          <Image
-            src={`/projects_photo/${slide.image}`}
-            alt={slide.alt}
-            fill
-            priority={index === 0}
-            className="w-full h-full object-cover object-top"
-          />
-        </div>
-      ))}
+      {/* Slides + Content */}
+      {SLIDES.map((slide, index) => {
+        const isActive = index === current;
 
-      {/* Content */}
-      <div className="relative z-20 flex h-full items-center">
-        <div className="w-full px-4 md:px-6">
-          <div className="md:pt-2 pt-20 ">
-            {/* Heading */}
-            <div className="md:pt-2 pt-20">
-              <style jsx>{`
-                @keyframes slideInLeft {
-                  from {
-                    opacity: 0;
-                    transform: translateX(-40px);
-                  }
-                  to {
-                    opacity: 1;
-                    transform: translateX(0);
-                  }
-                }
-              `}</style>
-
-              {mounted && (
-                <p
-                  key={current}
-                  style={{
-                    animation: "slideInLeft 0.7s ease-out 0.2s both",
-                  }}
-                  className={`
-            text-lg lg:text-3xl md:text-2xl ml-20 mx-12
-            text-black font-extrabold leading-relaxed
-            md:text-left
-            md:ml-[5rem]
-            ${current !== 1 ? "md:ml-[45%]" : "md:ml-[8%]"}
-          `}
-                >
-                  {SLIDES[current].text}
-                </p>
-              )}
-            </div>
-            {/* PERSON INFO BAR */}
-            {mounted && (
+        return (
+          <div
+            key={index}
+            className={`
+        absolute inset-0
+        flex items-center justify-center
+        transition-opacity duration-[900ms] ease-in-out
+        ${isActive ? "opacity-100 z-20" : "opacity-0 z-10"}
+      `}
+          >
+            {/* MAIN RESPONSIVE WRAPPER */}
+            <div
+              className="
+          w-full h-full
+          flex flex-col
+          md:flex-row
+          items-center
+          md:items-center
+          md:pt-32
+          justify-center
+          px-4 sm:px-8 md:px-16
+          mt-10
+          md:mt-0
+          gap-3 sm:gap-4 md:gap-6 lg:gap-8
+        "
+            >
+              {/* IMAGE */}
               <div
                 className={`
-                  mt-26
-          md:mt-6
-          md:absolute md:bottom-20
-          text-left
-          ${current === 2 && "pl-38"}
-          ${current === 0 && "pl-30"}
-          md:ml-[8rem]
-          ${current !== 1 ? "md:ml-[45%]" : ""}
-        `}
-                key={current}
-                style={{
-                  animation: "slideInLeft 0.7s ease-out 0.6s both",
-                }}
+            transition-transform duration-[1200ms] ease-out
+            ${isActive ? "translate-x-0 scale-100" : "translate-x-8 scale-95"}
+            flex-shrink-0
+          `}
               >
-                <div
-                  className="flex flex-col gap-x-6
-                  px-1"
-                >
-                  <span className="font-semibold text-[13px] text-white">
-                    {SLIDES[current].name}
-                  </span>
+                <div className="w-[220px] sm:w-[280px] md:w-[510px] lg:w-[550px]">
+                  <Image
+                    src={`/projects_photo/${slide.image}`}
+                    alt={slide.alt}
+                    width={620}
+                    height={720}
+                    priority={index === 0}
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+              </div>
 
-                  <span className="md:text-sm text-[12px] text-gray-300">
-                    {SLIDES[current].designation}
-                  </span>
+              {/* TEXT CONTENT */}
+              <div
+                className={`
+            max-w-2xl
+            text-left
+            transition-transform duration-[900ms] ease-out
+            ${
+              isActive ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
+            }
+          `}
+              >
+                <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-extrabold text-black leading-relaxed">
+                  {slide.text}
+                </p>
 
-                  <span className="flex items-center  text-[12px] gap-2 md:text-sm text-white">
-                    <Phone color="white" size={12} /> {SLIDES[current].phone}
+                {/* PERSON INFO */}
+                <div className="mt-4">
+                  <span className="block font-semibold text-sm text-white">
+                    {slide.name}
                   </span>
-
-                  <span className="md:text-sm whitespace-nowrap text-[12px] text-white">
-                    ✉ {SLIDES[current].email}
+                  <span className="block text-xs md:text-sm text-gray-300">
+                    {slide.designation}
+                  </span>
+                  <span className="flex items-center md:justify-start gap-2 text-xs md:text-sm text-white">
+                    <Phone size={12} /> {slide.phone}
+                  </span>
+                  <span className="block text-xs md:text-sm text-white mt-1 whitespace-nowrap">
+                    ✉ {slide.email}
                   </span>
                 </div>
               </div>
-            )}
-
-            {/* CTA Buttons — FIXED POSITION */}
-            {/* <AnimateOnScroll direction="down" delay={0.6}>
-              <div className="absolute bottom-36 left-[45%] z-30 flex gap-4 md:flex-wrap items-center text-center flex-col md:flex-row px-10 md:px-20 ">
-                <Link
-                  href="/contact-us"
-                  className="inline-flex text-center items-center w-64 md:w-auto shadow-2xl hover:shadow-xl active:scale-90 transition-all duration-300 bg-red-600 hover:bg-red-700  text-white md:px-6 px-16 py-3 rounded-full font-medium"
-                >
-                  Start a Project →
-                </Link>
-
-                <Link
-                  href="/careers"
-                  className="inline-flex text-center text-white bg-white/40 backdrop-blur-sm  items-center w-65 border md:w-auto shadow-6xl hover:shadow-xl active:scale-90 transition-all duration-300 border-white/60 hover:bg-white hover:text-black md:px-6 px-16 py-3 rounded-full font-medium"
-                >
-                  Join Our Team
-                </Link>
-              </div>
-            </AnimateOnScroll> */}
+            </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
 
       {/* Left Arrow */}
       <button
