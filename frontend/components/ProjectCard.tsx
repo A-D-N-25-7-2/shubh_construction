@@ -113,34 +113,76 @@ const ProjectCard = () => {
         image: "Scaffolding Training.jpg",
         name: "Scaffolding Training",
         type: "Industrial Project",
-        location: "Birla Cellulose, Kharach",
+        location: "Birla Cellulose, Kharach, Gujarat",
       },
       {
         image: "DM N pit Raft casting.jpeg",
         name: "DM N pit Raft casting",
         type: "Industrial Project",
-        location: "Reliance, Dahej",
+        location: "Reliance, Dahej, Gujarat",
       },
       {
         image: "DM plant work pooja.jpeg",
         name: "DM plant work pooja",
         type: "Industrial Project",
-        location: "Reliance, Dahej",
+        location: "Reliance, Dahej, Gujarat",
       },
       {
         image: "Utility Building.jpeg",
         name: "Utility Building",
         type: "Industrial Project",
-        location: "Vital Synthesis Company, Dahej",
+        location: "Vital Synthesis Company, Dahej, Gujarat",
+      },
+      {
+        image: "Bullet.jpeg",
+        name: "Bullet Foundation Work",
+        type: "Industrial Project",
+        location: "Reliance VMD, Vadodara, Gujarat",
+      },
+      {
+        image: "N-pit_casting_Wall.jpeg",
+        name: "N Pit wall casting",
+        type: "Industrial Project",
+        location: "Reliance, Dahej, Gujarat",
+      },
+      {
+        image: "CA_flacker.jpeg",
+        name: "CA flacker Ware house Renovation work",
+        type: "Renovation Project",
+        location: "Vital Synthesis Company, Dahej, Gujarat",
+      },
+      {
+        image: "Clarification_Tank_20mt_Dia.jpeg",
+        name: "Clarification Tank 20mt Dia at Reliance VMD Baroda",
+        type: "Industrial Project",
+        location: "Reliance VMD, Vadodara, Gujarat",
+      },
+      {
+        image: "Vital_Synthesis_Plant_Building.jpeg",
+        name: "Vital Synthesis Plant Building work",
+        type: "Industrial Project",
+        location: "Dahej, Gujarat",
+      },
+      {
+        image: "Vital_Synthesis_Road_work.jpeg",
+        name: "Vital Synthesis Road work, Plant Building work, Compound wall work",
+        type: "Industrial Project",
+        location: "Vital, Dahej, Gujarat",
+      },
+      {
+        image: "Plate_load_Test_Checking.jpeg",
+        name: "Plate Load Test Checking of Reliance client ",
+        type: "Industrial Project",
+        location: "Reliance, Dahej, Gujarat",
       },
     ];
 
   return (
-    <section className="grid grid-cols-1 gap-8 px-4 py-12 md:grid-cols-2 lg:grid-cols-3">
+    <section className="grid grid-cols-1 gap-8 px-4 py-10 md:grid-cols-2 lg:grid-cols-3">
       {Projects.map((item, index) => (
         <AnimateOnScroll direction="up" delay={0.2+((index/3)*0.2)} key={index}>
           <div
-            className="relative shadow-xl bg-white border-[1] border-gray-300 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-108 overflow-hidden"
+            className="relative shadow-xl bg-white border-[1] border-gray-400 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-104 overflow-hidden"
             key={index}
           >
             <Image
@@ -150,8 +192,8 @@ const ProjectCard = () => {
               height={400}
               className="object-cover w-full h-2/3 cursor-pointer"
             />
-            <div className="p-6 space-y-4">
-              <h3 className="font-bold text-xl">{item.name}</h3>
+            <div className="p-6 space-y-2">
+              <h3 className="font-bold text-lg">{item.name}</h3>
               <div className="absolute flex space-x-2 items-center bottom-6">
                 <MapPin size={24} color="red" />
                 <p className="text-gray-500 text-sm">{item.location}</p>
