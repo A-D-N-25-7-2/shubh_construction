@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
-import AnimateOnScroll from '@/components/AnimateOnScroll';
+import AnimateOnScroll from "../../components/AnimateOnScroll";
 import { CheckCircle2 } from 'lucide-react';
 
 
@@ -66,7 +66,7 @@ const Page = () => {
     <main>
       {/* Hero Section */}
       <section
-        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
+        className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
       >
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">

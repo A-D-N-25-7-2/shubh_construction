@@ -1,7 +1,48 @@
-import React from 'react'
-import HomeCarousel from '@/components/HomeCarousel';
+import React from "react";
+import HomeCarousel from "@/components/HomeCarousel";
 import Image from "next/image";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Shubh Construction | Trusted Civil & Industrial Construction Company",
+  description:
+    "Shubh Construction is a trusted civil and industrial construction company delivering quality projects including factories, warehouses, commercial buildings, and infrastructure works across India.",
+  keywords: [
+    "Shubh Construction",
+    "civil construction company",
+    "industrial construction",
+    "commercial buildings",
+    "construction company in India",
+    "industrial contractors",
+  ],
+  metadataBase: new URL("https://shubhconstructions.com"),
+  alternates: {
+    canonical: "https://shubhconstructions.com",
+  },
+  openGraph: {
+    title: "Shubh Construction | Civil & Industrial Experts",
+    description:
+      "Delivering excellence in civil and industrial construction with quality, safety, and timely delivery.",
+    url: "https://shubhconstructions.com",
+    siteName: "Shubh Construction",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shubh Construction – Civil & Industrial Construction Company",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shubh Construction",
+    description:
+      "Trusted civil and industrial construction company delivering quality infrastructure projects.",
+    images: ["/og-image.png"],
+  },
+};
 import {
   Building2,
   Home,
@@ -12,54 +53,58 @@ import {
   Award,
   Clock,
   CheckCircle2,
-} from "lucide-react"
-import Link from 'next/link'
-import AnimateOnScroll from '@/components/AnimateOnScroll';
-import ClientCarousel from '@/components/ClientCarousel';
+} from "lucide-react";
+import Link from "next/link";
+import AnimateOnScroll from "@/components/AnimateOnScroll";
+import ClientCarousel from "@/components/ClientCarousel";
 const ExpInfo = [
   {
     icon: Building,
     title: "Projects Completed",
-    value: "100+"
+    value: "100+",
   },
   {
     icon: Users,
     title: "Years of Experience",
-    value: "10+"
+    value: "10+",
   },
   {
     icon: Award,
     title: "Satisfied Clients",
-    value: "90+"
+    value: "90+",
   },
   {
     icon: Clock,
     title: "Timely Deliveries",
-    value: "95%"
-  }
+    value: "95%",
+  },
 ];
 const HomeServices = [
   {
     icon: Factory,
     title: "Industrial Projects",
-    description: "Warehouses, factories, and industrial facilities built to last."
+    description:
+      "Warehouses, factories, and industrial facilities built to last.",
   },
   {
     icon: Building2,
     title: "Commercial Buildings",
-    description: "Office spaces, retail centers, and commercial properties designed for success."
+    description:
+      "Office spaces, retail centers, and commercial properties designed for success.",
   },
   {
     icon: Users,
     title: "Project Management",
-    description: "End-to-end project management services ensuring your construction project stays on schedule and within budget."
+    description:
+      "End-to-end project management services ensuring your construction project stays on schedule and within budget.",
   },
   {
     icon: Wrench,
     title: "Renovations",
-    description: "Expert renovation and remodeling services to transform your space."
-  }
-]
+    description:
+      "Expert renovation and remodeling services to transform your space.",
+  },
+];
 const features = [
   "Experienced team of qualified engineers and skilled workers",
   "Quality materials and modern construction techniques",
@@ -184,6 +229,6 @@ const page = () => {
       </section>
     </main>
   );
-}
+};
 
-export default page
+export default page;

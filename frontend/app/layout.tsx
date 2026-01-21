@@ -17,39 +17,55 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://shubhconstructions.com"),
+
   title: {
     default: "Shubh Construction | Civil & Industrial Construction Company",
     template: "%s | Shubh Construction",
   },
+
   description:
     "Shubh Construction is a trusted civil and industrial construction company in Bharuch, Gujarat, delivering quality projects on time.",
+
+  openGraph: {
+    title: "Shubh Construction",
+    description: "Civil & industrial construction company in Bharuch, Gujarat",
+    url: "https://shubhconstructions.com",
+    siteName: "Shubh Construction",
+    images: [
+      {
+        url: "/og-image.png", // ✅ now resolves correctly
+        width: 1200,
+        height: 630,
+        alt: "Shubh Construction",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+
   other: {
     "application/ld+json": JSON.stringify({
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "ConstructionCompany"],
-
-      "name": "Shubh Construction",
-      "url": "https://shubhconstructions.com",
-      "logo": "https://shubhconstructions.com/shubh-construction-logo.png",
-
-      "telephone": "+919601940724",
-      "email": "J.talpada@shubhconstructions.com",
-
-      "address": {
+      name: "Shubh Construction",
+      url: "https://shubhconstructions.com",
+      logo: "https://shubhconstructions.com/shubh-construction-logo.png",
+      telephone: "+919601940724",
+      email: "J.talpada@shubhconstructions.com",
+      address: {
         "@type": "PostalAddress",
-        "streetAddress": "Office No. C-408, Narayan Luxuria, Umraj",
-        "addressLocality": "Bharuch",
-        "addressRegion": "Gujarat",
-        "postalCode": "392015",
-        "addressCountry": "IN",
+        streetAddress: "Office No. C-408, Narayan Luxuria, Umraj",
+        addressLocality: "Bharuch",
+        addressRegion: "Gujarat",
+        postalCode: "392015",
+        addressCountry: "IN",
       },
-
-      "areaServed": {
+      areaServed: {
         "@type": "AdministrativeArea",
-        "name": "Gujarat",
+        name: "Gujarat",
       },
-
-      "sameAs": [
+      sameAs: [
         "https://www.facebook.com/shubhconstruction2017/",
         "https://in.linkedin.com/in/shubh-construction-85850791",
       ],

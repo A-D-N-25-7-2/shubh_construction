@@ -1,37 +1,79 @@
-import AnimateOnScroll from '@/components/AnimateOnScroll';
-import ProjectCard from '@/components/ProjectCard';
-import Link from 'next/link';
-import React from 'react';
-import Image from 'next/image';
+import AnimateOnScroll from "@/components/AnimateOnScroll";
+import ProjectCard from "@/components/ProjectCard";
+import Link from "next/link";
+import React from "react";
+import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Projects | Shubh Construction – Civil & Industrial Works",
+  description:
+    "Explore completed civil and industrial construction projects by Shubh Construction. From water-retaining structures to turnkey infrastructure projects, delivered with quality, safety, and precision.",
+  keywords: [
+    "Shubh Construction projects",
+    "civil construction projects",
+    "industrial construction portfolio",
+    "ETP STP construction projects",
+    "water retaining structures",
+    "construction company projects",
+  ],
+  alternates: {
+    canonical: "https://yourdomain.com/projects",
+  },
+  openGraph: {
+    title: "Our Projects | Shubh Construction",
+    description:
+      "A showcase of completed civil and industrial construction projects delivered by Shubh Construction with excellence.",
+    url: "https://yourdomain.com/projects",
+    siteName: "Shubh Construction",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shubh Construction Projects Portfolio",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Projects | Shubh Construction",
+    description:
+      "View our portfolio of civil and industrial construction projects delivered with quality and reliability.",
+    images: ["/og-image.png"],
+  },
+};
+
 const ExpInfo = [
   {
     title: "Completed Projects",
-    value: "100+"
+    value: "100+",
   },
   {
     title: "Years of Experience",
-    value: "10+"
+    value: "10+",
   },
   {
     title: "Satisfied Clients",
-    value: "90+"
+    value: "90+",
   },
   {
     title: "Timely Deliveries",
-    value: "95%"
-  }
+    value: "95%",
+  },
 ];
 const Certificates = [
   {
     image: "/projects_photo/C1.jpg",
-    alt: "ISO 9001-2015 Certificate for Quality Management Systems"
+    alt: "ISO 9001-2015 Certificate for Quality Management Systems",
   },
-]
+];
 const page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -69,7 +111,7 @@ const page = () => {
           <div className="text-center px-8 pt-16 md:pt-24 space-y-3">
             <h2
               className="text-3xl md:text-4xl text-red-700 font-bold"
-              id="projects-heading"
+              id="featured-projects-heading"
             >
               Featured Projects
             </h2>
@@ -86,7 +128,7 @@ const page = () => {
           <div className="text-center px-8 py-6 space-y-3">
             <h2
               className="text-3xl md:text-4xl text-red-700 font-bold"
-              id="projects-heading"
+              id="certificates-heading"
             >
               Our Certificates
             </h2>
@@ -132,6 +174,6 @@ const page = () => {
       </section>
     </main>
   );
-}
+};
 
-export default page
+export default page;

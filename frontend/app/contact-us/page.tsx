@@ -1,5 +1,5 @@
 "use client";
-import AnimateOnScroll from '@/components/AnimateOnScroll';
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import React, { useRef, useState } from 'react'
 import { FiPhone } from "react-icons/fi";
 import { MdMailOutline } from "react-icons/md";
@@ -68,8 +68,7 @@ const Page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section
-        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">

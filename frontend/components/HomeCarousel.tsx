@@ -8,7 +8,7 @@ import { Phone } from "lucide-react";
 
 const SLIDES = [
   {
-    image: "Bharat-Talpada_Portrait.png",
+    image: "Bharat-Talpada_Portrait.webp",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "Good buildings come from good people, and all problems are solved by good design",
     name: "Bharat Talpada",
@@ -18,7 +18,7 @@ const SLIDES = [
     direction: "ltr",
   },
   {
-    image: "Jagdish-Vaghela_Portrait.png",
+    image: "Jagdish-Vaghela_Portrait.webp",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "An idea is salvation by imagination",
     name: "Jagdish Vaghela",
@@ -28,7 +28,7 @@ const SLIDES = [
     direction: "rtl",
   },
   {
-    image: "Amarsinh_Portrait.png",
+    image: "Amarsinh_Portrait.webp",
     alt: "Industrial construction crane work by Shubh Construction in Gujarat",
     text: "The sun never knew how great it was until it hit the side of a building",
     name: "Amar Singh",
@@ -37,18 +37,6 @@ const SLIDES = [
     email: "amar@shubhconstructions.com",
     direction: "ltr",
   },
-  // {
-  //   image: "Godrej Road Work.jpg",
-  //   alt: "Industrial construction crane work by Shubh Construction in Gujarat",
-  // },
-  // {
-  //   image: "Elantas RCC Road work.jpg",
-  //   alt: "Commercial landscaping and civil construction project in Bharuch",
-  // },
-  // {
-  //   image: "ETP & MEE.jpg",
-  //   alt: "Top view of large-scale civil construction project by Shubh Construction",
-  // },
 ];
 
 
@@ -75,7 +63,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="bg-[url('/projects_photo/BG.jpg')] bg-center bg-cover bg-no-repeat relative h-[600px] overflow-hidden w-full"
+      className="bg-[url('/projects_photo/BG.webp')] bg-center bg-cover bg-no-repeat relative h-[600px] overflow-hidden w-full"
       role="banner"
     >
       {/* Slides */}

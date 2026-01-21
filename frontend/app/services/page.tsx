@@ -1,11 +1,52 @@
-import React from 'react'
-import { LuHouse } from "react-icons/lu";
+
 import { BiBuildings } from "react-icons/bi";
 import { LiaIndustrySolid } from "react-icons/lia";
 import { LuWrench } from "react-icons/lu";
 import { LuNotepadText } from "react-icons/lu";
-import AnimateOnScroll from '@/components/AnimateOnScroll';
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Link from 'next/link';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Our Services | Shubh Construction – Civil & Industrial Experts",
+  description:
+    "Explore the wide range of civil, industrial, and mechanical construction services offered by Shubh Construction. From industrial civil works to project management, we deliver quality, safety, and reliability.",
+  keywords: [
+    "civil construction services",
+    "industrial civil works",
+    "industrial mechanical works",
+    "commercial construction",
+    "construction project management",
+    "renovation and remodeling services",
+    "Shubh Construction services",
+  ],
+  alternates: {
+    canonical: "https://yourdomain.com/services",
+  },
+  openGraph: {
+    title: "Our Services | Shubh Construction",
+    description:
+      "Comprehensive civil and industrial construction services delivered by Shubh Construction with expertise and precision.",
+    url: "https://yourdomain.com/services",
+    siteName: "Shubh Construction",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shubh Construction Services",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our Services | Shubh Construction",
+    description:
+      "Discover civil, industrial, mechanical, and project management services by Shubh Construction.",
+    images: ["/og-image.png"],
+  },
+};
 
 const page = () => {
     const services = [
@@ -63,9 +104,7 @@ const page = () => {
     <main>
       {/* Hero Section */}
 
-      <section
-        className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat"
-      >
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -156,7 +195,7 @@ const page = () => {
                   {" "}
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h2 className="font-bold text-lg mb-2">{step.title}</h2>
+                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
                 <p className="text-gray-500 text-sm">{step.description}</p>
               </div>
             </AnimateOnScroll>
@@ -184,6 +223,60 @@ const page = () => {
           </div>
         </AnimateOnScroll>
       </section>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ConstructionCompany",
+            name: "Shubh Construction",
+            url: "https://shubhconstructions.com",
+            description:
+              "Shubh Construction provides civil, industrial, and mechanical construction services with a focus on quality, safety, and timely delivery.",
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Construction Services",
+              itemListElement: [
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Industrial Civil Works",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Industrial Mechanical Works",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Commercial Construction",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Renovation and Remodeling",
+                  },
+                },
+                {
+                  "@type": "Offer",
+                  itemOffered: {
+                    "@type": "Service",
+                    name: "Project Management",
+                  },
+                },
+              ],
+            },
+          }),
+        }}
+      />
     </main>
   );
 }

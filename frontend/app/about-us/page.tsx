@@ -1,9 +1,50 @@
-import AnimateOnScroll from '@/components/AnimateOnScroll';
-import React from "react"
+import AnimateOnScroll from "@/components/AnimateOnScroll";
 import Image from "next/image";
-import { FiTarget } from "react-icons/fi"
-import { IoEyeOutline, IoRibbonOutline } from "react-icons/io5"
-import { TiTickOutline } from "react-icons/ti"
+import { FiTarget } from "react-icons/fi";
+import { IoEyeOutline, IoRibbonOutline } from "react-icons/io5";
+import { TiTickOutline } from "react-icons/ti";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Shubh Construction | Trusted Civil Contractors Since 2017",
+  description:
+    "Learn about Shubh Construction, a trusted civil construction company established in 2017. We specialize in industrial water-retaining structures, ETP, STP, and turnkey civil projects with a strong focus on quality, safety, and reliability.",
+  keywords: [
+    "Shubh Construction",
+    "civil construction company",
+    "industrial construction",
+    "ETP STP construction",
+    "water retaining structures",
+    "construction company in India",
+    "civil contractors",
+  ],
+  alternates: {
+    canonical: "https://shubhconstructions.com/about",
+  },
+  openGraph: {
+    title: "About Shubh Construction | Civil Construction Experts",
+    description:
+      "Discover Shubh Construction’s mission, vision, and core values. Delivering quality civil and industrial construction projects since 2017.",
+    url: "https://shubhconstructions.com/about",
+    siteName: "Shubh Construction",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shubh Construction – Civil Construction Company",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Shubh Construction",
+    description:
+      "Trusted civil construction company delivering industrial and infrastructure projects since 2017.",
+    images: ["/og-image.png"],
+  },
+};
 
 const AboutUsInfo = [
   {
@@ -18,22 +59,46 @@ const AboutUsInfo = [
     content:
       "At Shubh Construction, our vision is driven by pragmatism, teamwork, trust, and accountability. These core values are deeply integrated into our work culture and guide every decision we make, ensuring reliable execution and long-lasting client relationships.",
   },
-]
+];
 
 const CoreValues = [
-  { title: "Quality", description: "We never compromise on the quality of materials or workmanship in any project." },
-  { title: "Integrity", description: "Transparent communication and honest business practices in all our dealings." },
-  { title: "Safety", description: "Safety of our workers and clients is our top priority on every site." },
-  { title: "Reliability", description: "Delivering projects on time and within budget, keeping our commitments." },
-  { title: "Innovation", description: "Embracing modern techniques and technologies to improve our services." },
-  { title: "Excellence", description: "Striving for excellence in every aspect of construction and client service." },
-]
+  {
+    title: "Quality",
+    description:
+      "We never compromise on the quality of materials or workmanship in any project.",
+  },
+  {
+    title: "Integrity",
+    description:
+      "Transparent communication and honest business practices in all our dealings.",
+  },
+  {
+    title: "Safety",
+    description:
+      "Safety of our workers and clients is our top priority on every site.",
+  },
+  {
+    title: "Reliability",
+    description:
+      "Delivering projects on time and within budget, keeping our commitments.",
+  },
+  {
+    title: "Innovation",
+    description:
+      "Embracing modern techniques and technologies to improve our services.",
+  },
+  {
+    title: "Excellence",
+    description:
+      "Striving for excellence in every aspect of construction and client service.",
+  },
+];
 
 const Page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-[url('/bg4.png')] pt-33 pb-16 bg-center bg-cover bg-no-repeat ">
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat ">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -176,6 +241,6 @@ const Page = () => {
       </section>
     </main>
   );
-}
+};
 
-export default Page
+export default Page;
