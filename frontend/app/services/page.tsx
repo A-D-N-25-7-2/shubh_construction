@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "Shubh Construction services",
   ],
   alternates: {
-    canonical: "https://yourdomain.com/services",
+    canonical: "https://shubhconstructions.com/services",
   },
   openGraph: {
     title: "Our Services | Shubh Construction",
     description:
       "Comprehensive civil and industrial construction services delivered by Shubh Construction with expertise and precision.",
-    url: "https://yourdomain.com/services",
+    url: "https://shubhconstructions.com/services",
     siteName: "Shubh Construction",
     images: [
       {

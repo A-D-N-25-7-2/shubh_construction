@@ -1,7 +1,6 @@
 import AnimateOnScroll from "@/components/AnimateOnScroll";
 import ProjectCard from "@/components/ProjectCard";
 import Link from "next/link";
-import React from "react";
 import Image from "next/image";
 import type { Metadata } from "next";
 
