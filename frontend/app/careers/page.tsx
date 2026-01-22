@@ -120,14 +120,14 @@ const Page = () => {
               Frequently Asked Questions
             </h2>
             <div>
-              <strong>Do you offer construction jobs in Bharuch?</strong>
+              <strong className="text-gray-900">Do you offer construction jobs in Bharuch?</strong>
               <br />
               <p className="text-gray-600 mt-2">
                 Yes, we hire for multiple on-site roles in Bharuch, Gujarat.
               </p>
             </div>
             <div>
-              <strong>How can I apply?</strong>
+              <strong className="text-gray-900">How can I apply?</strong>
               <br />
               <p className="text-gray-600 mt-2">
                 Fill out the form and upload your resume.
@@ -172,7 +172,7 @@ const Page = () => {
                   id={item.name}
                   name={item.name}
                   placeholder={item.example}
-                  className="border focus:border-2 border-black rounded-md px-4 py-2
+                  className="border text-gray-900 focus:border-2 border-black rounded-md px-4 py-2
                              focus:border-red-700 focus:outline-none
                              transition-colors duration-300"
                   required
@@ -186,7 +186,7 @@ const Page = () => {
                 </label>
                 <select
                   name="position"
-                  className="border border-black rounded-md px-6 py-2
+                  className="border border-black text-gray-900 rounded-md px-6 py-2
                              focus:border-red-700 transition-colors duration-300"
                   required
                 >

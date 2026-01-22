@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     "construction company projects",
   ],
   alternates: {
-    canonical: "https://yourdomain.com/projects",
+    canonical: "https://shubhconstructions.com/project",
   },
   openGraph: {
     title: "Our Projects | Shubh Construction",
     description:
       "A showcase of completed civil and industrial construction projects delivered by Shubh Construction with excellence.",
-    url: "https://yourdomain.com/projects",
+    url: "https://shubhconstructions.com/project",
     siteName: "Shubh Construction",
     images: [
       {
@@ -156,7 +156,7 @@ const page = () => {
       {/*Get in Touch*/}
       <section className="bg-gray-50 px-8 py-16 text-center space-y-3">
         <AnimateOnScroll direction="up" delay={0.2}>
-          <h2 className="text-3xl font-bold md:text-4xl md:mb-4">
+          <h2 className="text-3xl font-bold md:text-4xl dark:text-gray-900 md:mb-4">
             Start Your Project With Us
           </h2>
           <p className="text-lg leading-relaxed text-gray-500 lg:mb-0">

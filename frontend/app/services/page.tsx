@@ -195,7 +195,9 @@ const page = () => {
                   {" "}
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="font-bold text-lg mb-2">{step.title}</h3>
+                <h3 className="font-bold text-lg dark:text-gray-900 mb-2">
+                  {step.title}
+                </h3>
                 <p className="text-gray-500 text-sm">{step.description}</p>
               </div>
             </AnimateOnScroll>

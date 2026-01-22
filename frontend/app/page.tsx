@@ -149,7 +149,7 @@ const page = () => {
                 key={index}
               >
                 <item.icon className="p-3 h-14 w-14 text-red-700 rounded-lg bg-red-100" />
-                <p className="font-bold text-xl">{item.title}</p>
+                <p className="font-bold text-gray-900 text-xl">{item.title}</p>
                 <p className="text-gray-500">{item.description}</p>
               </div>
             </AnimateOnScroll>
@@ -159,7 +159,7 @@ const page = () => {
           <div className=" flex items-center justify-center">
             <Link
               href="/services"
-              className="text-center mt-6 shadow-xl border-[1px] border-red-700 bg-white px-6 py-2 rounded-lg border-[1] border-gray-200 active:scale-95 hover:scale-105 hover:shadow-xl hover:bg-red-700 hover:text-white transition-all duration-400"
+              className="text-center mt-6 shadow-xl text-gray-900 border-[1px] border-red-700 bg-white px-6 py-2 rounded-lg border-[1] border-gray-200 active:scale-95 hover:scale-105 hover:shadow-xl hover:bg-red-700 hover:text-white transition-all duration-400"
             >
               View All Services
             </Link>
@@ -209,7 +209,7 @@ const page = () => {
             {features.map((item, index) => (
               <div className="flex flex-row gap-3" key={index}>
                 <CheckCircle2 className="text-red-700" />
-                <p className="">{item}</p>
+                <p className="dark:text-gray-900">{item}</p>
               </div>
             ))}
           </div>

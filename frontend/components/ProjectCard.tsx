@@ -186,7 +186,7 @@ const ProjectCard = () => {
   return (
     <section className="grid grid-cols-1 gap-8 px-4 py-10 md:grid-cols-2 lg:grid-cols-3">
       {Projects.map((item, index) => (
-        <AnimateOnScroll direction="up" delay={((index/3)*0.2)} key={index}>
+        <AnimateOnScroll direction="up" delay={(index / 3) * 0.2} key={index}>
           <div
             className="relative shadow-xl bg-white border-[1] border-gray-400 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-104 overflow-hidden"
             key={index}
@@ -199,7 +199,9 @@ const ProjectCard = () => {
               className="object-cover w-full h-2/3 cursor-pointer"
             />
             <div className="p-6 space-y-2">
-              <h3 className="font-bold text-lg">{item.name}</h3>
+              <h3 className="font-bold dark:text-gray-900 text-lg">
+                {item.name}
+              </h3>
               <div className="absolute flex space-x-2 items-center bottom-6">
                 <MapPin size={24} color="red" />
                 <p className="text-gray-500 text-sm">{item.location}</p>

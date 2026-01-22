@@ -99,10 +99,11 @@ const Page = () => {
                   Full Name
                 </label>
                 <input
+                  suppressHydrationWarning
                   type="text"
                   name="name"
                   placeholder="Enter your Full Name"
-                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 text-gray-900 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                   required
                 />
               </div>
@@ -115,7 +116,7 @@ const Page = () => {
                   type="email"
                   name="email"
                   placeholder="your.email@gmail.com"
-                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 text-gray-900 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                   required
                 />
               </div>
@@ -128,7 +129,7 @@ const Page = () => {
                   type="text"
                   name="phone"
                   placeholder="+91 12345 67890"
-                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
+                  className="border focus:border-2 text-gray-900 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300"
                 />
               </div>
               {/* Your Message */}
@@ -139,7 +140,7 @@ const Page = () => {
                 <textarea
                   name="message"
                   placeholder="Your Message....."
-                  className="border focus:border-2 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300 resize-none"
+                  className="border focus:border-2 text-gray-900 border-black rounded-md px-4 py-2 focus:border-red-700 focus:outline-none transition-colors duration-300 resize-none"
                   rows={6}
                   required
                 />
@@ -171,7 +172,9 @@ const Page = () => {
                   <detail.icon className="text-5xl p-3 shrink-0 text-red-700 bg-red-200 rounded-lg hover:scale-115 transition-all duration-300" />
 
                   <div>
-                    <h3 className="font-bold mb-1">{detail.title}</h3>
+                    <h3 className="font-bold dark:text-gray-900 mb-1">
+                      {detail.title}
+                    </h3>
 
                     {detail.title === "Phone" ? (
                       <>
@@ -234,7 +237,9 @@ const Page = () => {
       {/*Ready to Build */}
       <section className="bg-gray-50 text-center py-14 px-6 flex flex-col gap-4">
         <AnimateOnScroll direction="up" delay={0.2}>
-          <h2 className="font-bold text-3xl">Ready to Build?</h2>
+          <h2 className="font-bold text-3xl dark:text-gray-900">
+            Ready to Build?
+          </h2>
           <p className="text-gray-500 text-lg">
             Get in touch with our experienced construction team and bring your
             ideas to life with confidence and precision.
