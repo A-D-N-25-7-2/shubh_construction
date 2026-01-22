@@ -8,13 +8,13 @@
   </url>
 
   <url>
-    <loc>https://shubhconstructions.com/about</loc>
+    <loc>https://shubhconstructions.com/about-us</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://shubhconstructions.com/projects</loc>
+    <loc>https://shubhconstructions.com/project</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -32,7 +32,7 @@
   </url>
   
   <url>
-    <loc>https://shubhconstructions.com/contact</loc>
+    <loc>https://shubhconstructions.com/contact-us</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
