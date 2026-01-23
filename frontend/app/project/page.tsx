@@ -72,7 +72,7 @@ const page = () => {
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-[url('/bg4.webp')] pt-33 pb-16 bg-center bg-cover bg-no-repeat">
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-25 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">

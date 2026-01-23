@@ -186,7 +186,7 @@ const ProjectCard = () => {
   return (
     <section className="grid grid-cols-1 gap-8 px-4 py-10 md:grid-cols-2 lg:grid-cols-3">
       {Projects.map((item, index) => (
-        <AnimateOnScroll direction="up" delay={(index / 3) * 0.2} key={index}>
+        <AnimateOnScroll direction="up" delay={(index % 3) * 0.2} key={index}>
           <div
             className="relative shadow-xl bg-white border-[1] border-gray-400 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-xl h-104 overflow-hidden"
             key={index}
