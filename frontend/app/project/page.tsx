@@ -70,7 +70,7 @@ const Certificates = [
 ];
 const page = () => {
   return (
-    <main>
+    <main className="pt-28">
       {/* Hero Section */}
       <section className="bg-[url('/bg4.webp')] pt-33 pb-25 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>

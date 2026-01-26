@@ -63,11 +63,9 @@ const Page = () => {
   };
 
   return (
-    <main>
+    <main className="pt-28">
       {/* Hero Section */}
-      <section
-        className="bg-[url('/bg4.webp')] pt-33 pb-25 bg-center bg-cover bg-no-repeat"
-      >
+      <section className="bg-[url('/bg4.webp')] pt-33 pb-25 bg-center bg-cover bg-no-repeat">
         <AnimateOnScroll direction="down" delay={0.2}>
           <div className="container mx-auto px-4">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -120,7 +118,9 @@ const Page = () => {
               Frequently Asked Questions
             </h2>
             <div>
-              <strong className="text-gray-900">Do you offer construction jobs in Bharuch?</strong>
+              <strong className="text-gray-900">
+                Do you offer construction jobs in Bharuch?
+              </strong>
               <br />
               <p className="text-gray-600 mt-2">
                 Yes, we hire for multiple on-site roles in Bharuch, Gujarat.
@@ -164,10 +164,10 @@ const Page = () => {
                     item.name === "email"
                       ? "email"
                       : item.name === "mobile"
-                      ? "tel"
-                      : item.name === "total_experience"
-                      ? "number"
-                      : "text"
+                        ? "tel"
+                        : item.name === "total_experience"
+                          ? "number"
+                          : "text"
                   }
                   id={item.name}
                   name={item.name}
