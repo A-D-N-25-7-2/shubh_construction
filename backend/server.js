@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "https://shubh-construction.vercel.app",
+    origin: process.env.CORS_ORIGIN || "https://shubhconstructions.com",
     methods: ["GET", "POST"],
   })
 );
