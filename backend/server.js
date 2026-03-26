@@ -1,7 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
-const Mailjet = require("node-mailjet");
+const { Resend } = require("resend");
 require("dotenv").config();
 
 const app = express();
@@ -10,12 +10,7 @@ const app = express();
    VALIDATE ENVIRONMENT VARIABLES
 ========================= */
 
-const requiredEnvVars = [
-  "MJ_APIKEY_PUBLIC",
-  "MJ_APIKEY_PRIVATE",
-  "MJ_SENDER_EMAIL",
-  "RECEIVER_EMAIL",
-];
+const requiredEnvVars = ["RESEND_API_KEY", "SENDER_EMAIL", "RECEIVER_EMAIL"];
 
 requiredEnvVars.forEach((envVar) => {
   if (!process.env[envVar]) {
@@ -27,17 +22,19 @@ requiredEnvVars.forEach((envVar) => {
 });
 
 if (
-  process.env.MJ_APIKEY_PUBLIC &&
-  process.env.MJ_APIKEY_PRIVATE &&
-  process.env.MJ_SENDER_EMAIL &&
+  process.env.RESEND_API_KEY &&
+  process.env.SENDER_EMAIL &&
   process.env.RECEIVER_EMAIL
 ) {
-  console.log("✅ All Mailjet environment variables are configured");
+  console.log("✅ All Resend environment variables are configured");
 } else {
   console.warn(
-    "⚠️  Mailjet is not fully configured. Email functionality may fail.",
+    "⚠️  Resend is not fully configured. Email functionality may fail.",
   );
 }
+
+// Initialize Resend client
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 /* =========================
    CORS CONFIGURATION
@@ -119,35 +116,19 @@ const upload = multer({
 });
 
 /* =========================
-   MAILJET CONFIG
-========================= */
-
-const mailjet = Mailjet.apiConnect(
-  process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE,
-);
-
-/* =========================
    JOB APPLICATION ROUTE
 ========================= */
 
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
     // Check if required environment variables are set
-    if (
-      !process.env.MJ_APIKEY_PUBLIC ||
-      !process.env.MJ_APIKEY_PRIVATE ||
-      !process.env.MJ_SENDER_EMAIL ||
-      !process.env.RECEIVER_EMAIL
-    ) {
+    if (!process.env.RESEND_API_KEY || !process.env.SENDER_EMAIL || !process.env.RECEIVER_EMAIL) {
       console.error(
-        "❌ Mailjet credentials not configured",
-        "Public:",
-        !!process.env.MJ_APIKEY_PUBLIC,
-        "Private:",
-        !!process.env.MJ_APIKEY_PRIVATE,
+        "❌ Resend credentials not configured",
+        "API Key:",
+        !!process.env.RESEND_API_KEY,
         "Sender:",
-        !!process.env.MJ_SENDER_EMAIL,
+        !!process.env.SENDER_EMAIL,
         "Receiver:",
         !!process.env.RECEIVER_EMAIL,
       );
@@ -203,8 +184,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       });
     }
 
-    const attachmentBase64 = req.file.buffer.toString("base64");
-
     console.log(`📨 Processing job application from: ${email}`);
 
     /* =========================
@@ -212,39 +191,32 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     ========================= */
 
     try {
-      await mailjet.post("send", { version: "v3.1" }).request({
-        Messages: [
+      const hrEmailResult = await resend.emails.send({
+        from: process.env.SENDER_EMAIL,
+        to: process.env.RECEIVER_EMAIL,
+        subject: `New Job Application - ${fullname}`,
+        html: `
+          <h3 style="color: #d32f2f;">New Job Application</h3>
+          <p><strong>Name:</strong> ${fullname}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Mobile:</strong> ${mobile}</p>
+          <p><strong>Total Experience:</strong> ${total_experience} years</p>
+          <p><strong>Current Employer:</strong> ${current_employer}</p>
+          <p><strong>Position Applied:</strong> ${position}</p>
+          <hr/>
+          <p><em>Resume attached</em></p>
+        `,
+        attachments: [
           {
-            From: {
-              Email: process.env.MJ_SENDER_EMAIL,
-              Name: "Shubh Construction",
-            },
-            To: [
-              {
-                Email: process.env.RECEIVER_EMAIL,
-                Name: "HR Team",
-              },
-            ],
-            Subject: `New Job Application - ${fullname}`,
-            HTMLPart: `
-              <h3>New Job Application</h3>
-              <p><b>Name:</b> ${fullname}</p>
-              <p><b>Email:</b> ${email}</p>
-              <p><b>Mobile:</b> ${mobile}</p>
-              <p><b>Total Experience:</b> ${total_experience} years</p>
-              <p><b>Current Employer:</b> ${current_employer}</p>
-              <p><b>Position Applied:</b> ${position}</p>
-            `,
-            Attachments: [
-              {
-                ContentType: req.file.mimetype,
-                Filename: req.file.originalname,
-                Base64Content: attachmentBase64,
-              },
-            ],
+            filename: req.file.originalname,
+            content: req.file.buffer,
           },
         ],
       });
+
+      if (hrEmailResult.error) {
+        throw new Error(`HR email failed: ${hrEmailResult.error.message}`);
+      }
 
       console.log(`✅ HR email sent successfully for: ${email}`);
     } catch (mailError) {
@@ -257,36 +229,28 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     ========================= */
 
     try {
-      await mailjet.post("send", { version: "v3.1" }).request({
-        Messages: [
-          {
-            From: {
-              Email: process.env.MJ_SENDER_EMAIL,
-              Name: "Shubh Construction",
-            },
-            To: [
-              {
-                Email: email,
-                Name: fullname,
-              },
-            ],
-            Subject: "Application Received",
-            HTMLPart: `
-              <p>Hi ${fullname},</p>
-              <p>Thank you for applying at <b>Shubh Construction</b>.</p>
-              <p>We have received your application for the position of <b>${position}</b>.</p>
-              <p>Our HR team will contact you if shortlisted.</p>
-              <br/>
-              <p>Regards,<br/>Shubh Construction Team</p>
-            `,
-          },
-        ],
+      const autoReplyResult = await resend.emails.send({
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: "Application Received - Shubh Construction",
+        html: `
+          <p>Hi ${fullname},</p>
+          <p>Thank you for applying at <strong>Shubh Construction</strong>.</p>
+          <p>We have received your application for the position of <strong>${position}</strong>.</p>
+          <p>Our HR team will review your application and contact you if shortlisted.</p>
+          <br/>
+          <p>Best regards,<br/><strong>Shubh Construction Team</strong></p>
+        `,
       });
 
-      console.log(`✅ Auto-reply email sent to: ${email}`);
+      if (autoReplyResult.error) {
+        console.error("❌ Failed to send auto-reply email:", autoReplyResult.error.message);
+        console.warn("⚠️  Auto-reply failed but application was recorded");
+      } else {
+        console.log(`✅ Auto-reply email sent to: ${email}`);
+      }
     } catch (mailError) {
       console.error("❌ Failed to send auto-reply email:", mailError.message);
-      // Don't throw here - application is already recorded
       console.warn("⚠️  Auto-reply failed but application was recorded");
     }
 
