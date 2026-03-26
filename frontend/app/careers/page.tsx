@@ -45,10 +45,13 @@ const Page = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await fetch("https://shubh-construction.onrender.com/api/job-application", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://shubh-construction-v8rh.onrender.com/api/job-application",
+        {
+          method: "POST",
+          body: formData,
+        },
+      );
       if (res.ok) {
         setMessage("Application sent successfully!");
         setError("");

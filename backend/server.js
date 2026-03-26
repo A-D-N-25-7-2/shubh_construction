@@ -6,13 +6,37 @@ require("dotenv").config();
 
 const app = express();
 
+/* =========================
+   CORS CONFIGURATION
+========================= */
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://www.shubhconstructions.com",
+  "https://shubhconstructions.com",
+];
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN || "https://shubhconstructions.com",
+    origin: function (origin, callback) {
+      // Allow requests with no origin (Postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST"],
-  })
+  }),
 );
+
+// Handle preflight requests
+
+/* =========================
+   MIDDLEWARE
+========================= */
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,11 +45,20 @@ app.get("/", (req, res) => {
   res.send("Backend is running properly");
 });
 
+/* =========================
+   MULTER CONFIG
+========================= */
+
 const upload = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 5 * 1024 * 1024 },
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
   fileFilter: (req, file, cb) => {
-    const allowed = ["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+    const allowed = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
     if (allowed.includes(file.mimetype)) {
       cb(null, true);
     } else {
@@ -34,10 +67,18 @@ const upload = multer({
   },
 });
 
+/* =========================
+   MAILJET CONFIG
+========================= */
+
 const mailjet = Mailjet.apiConnect(
   process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE
+  process.env.MJ_APIKEY_PRIVATE,
 );
+
+/* =========================
+   JOB APPLICATION ROUTE
+========================= */
 
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
@@ -54,7 +95,14 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       position,
     } = req.body;
 
-    if (!fullname || !email || !mobile || !total_experience || !current_employer || !position) {
+    if (
+      !fullname ||
+      !email ||
+      !mobile ||
+      !total_experience ||
+      !current_employer ||
+      !position
+    ) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -63,6 +111,10 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     }
 
     const attachmentBase64 = req.file.buffer.toString("base64");
+
+    /* =========================
+       SEND TO HR
+    ========================= */
 
     await mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
@@ -98,6 +150,10 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       ],
     });
 
+    /* =========================
+       AUTO-REPLY TO CANDIDATE
+    ========================= */
+
     await mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
         {
@@ -126,7 +182,6 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     return res.status(200).json({
       message: "Job application submitted successfully",
     });
-
   } catch (error) {
     console.error("MAILJET ERROR 👉", error);
     return res.status(500).json({
@@ -134,6 +189,10 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
     });
   }
 });
+
+/* =========================
+   START SERVER
+========================= */
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
