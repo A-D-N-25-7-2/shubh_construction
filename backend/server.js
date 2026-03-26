@@ -122,7 +122,11 @@ const upload = multer({
 app.post("/api/job-application", upload.single("resume"), async (req, res) => {
   try {
     // Check if required environment variables are set
-    if (!process.env.RESEND_API_KEY || !process.env.SENDER_EMAIL || !process.env.RECEIVER_EMAIL) {
+    if (
+      !process.env.RESEND_API_KEY ||
+      !process.env.SENDER_EMAIL ||
+      !process.env.RECEIVER_EMAIL
+    ) {
       console.error(
         "❌ Resend credentials not configured",
         "API Key:",
@@ -244,7 +248,10 @@ app.post("/api/job-application", upload.single("resume"), async (req, res) => {
       });
 
       if (autoReplyResult.error) {
-        console.error("❌ Failed to send auto-reply email:", autoReplyResult.error.message);
+        console.error(
+          "❌ Failed to send auto-reply email:",
+          autoReplyResult.error.message,
+        );
         console.warn("⚠️  Auto-reply failed but application was recorded");
       } else {
         console.log(`✅ Auto-reply email sent to: ${email}`);

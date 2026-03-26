@@ -1,6 +1,7 @@
 # Resend Email Service Setup Guide
 
 ## Overview
+
 Your application has been migrated from **Mailjet** to **Resend** for sending emails. Resend is a modern email API service that's designed for developers.
 
 ## Step 1: Get Your Resend API Key
@@ -14,9 +15,11 @@ Your application has been migrated from **Mailjet** to **Resend** for sending em
 ## Step 2: Configure Resend Domain
 
 ### For Development (Testing)
+
 Resend provides a test email address. You can send emails from `onboarding@resend.dev` for testing purposes.
 
 ### For Production (Real Emails)
+
 1. Go to [Resend Dashboard](https://resend.com/dashboard)
 2. Click **Domains**
 3. Click **Add Domain**
@@ -44,6 +47,7 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5000,https://www.shubhcon
 ```
 
 **Important Notes:**
+
 - Replace `re_your_api_key_here` with your actual API key from Resend
 - For development: Use `onboarding@resend.dev` as `SENDER_EMAIL`
 - For production: Use your verified domain (e.g., `noreply@yourdomain.com`)
@@ -55,18 +59,19 @@ ALLOWED_ORIGINS=http://localhost:3000,http://localhost:5000,https://www.shubhcon
 3. Go to **Settings** → **Environment Variables**
 4. Update these variables:
 
-| Variable | Value |
-|----------|-------|
-| `RESEND_API_KEY` | `re_your_api_key_from_resend` |
-| `SENDER_EMAIL` | `noreply@yourdomain.com` (or `onboarding@resend.dev` for testing) |
-| `RECEIVER_EMAIL` | `j.talpada@shubhconstructions.com` |
-| `ALLOWED_ORIGINS` | Same as backend/.env |
+| Variable          | Value                                                             |
+| ----------------- | ----------------------------------------------------------------- |
+| `RESEND_API_KEY`  | `re_your_api_key_from_resend`                                     |
+| `SENDER_EMAIL`    | `noreply@yourdomain.com` (or `onboarding@resend.dev` for testing) |
+| `RECEIVER_EMAIL`  | `j.talpada@shubhconstructions.com`                                |
+| `ALLOWED_ORIGINS` | Same as backend/.env                                              |
 
 5. **Redeploy** the service after updating
 
 ## Step 5: Test the Integration
 
 ### Local Testing
+
 ```bash
 cd backend
 npm start
@@ -79,6 +84,7 @@ npm start
    - `✅ Auto-reply email sent to: applicant@email.com`
 
 ### Production Testing
+
 1. Visit `https://www.shubhconstructions.com`
 2. Go to Careers page
 3. Submit a test application
@@ -87,6 +93,7 @@ npm start
 ## Resend Features
 
 ### Free Tier Includes:
+
 - ✅ 100 emails/day
 - ✅ Excellent deliverability
 - ✅ Real-time tracking (paid feature)
@@ -94,6 +101,7 @@ npm start
 - ✅ Webhook support
 
 ### Benefits over Mailjet:
+
 - ✅ Simpler API (easier to use)
 - ✅ Better documentation for developers
 - ✅ No SMTP configuration needed
@@ -104,27 +112,35 @@ npm start
 ## Common Issues & Solutions
 
 ### Issue: "Invalid API Key"
+
 **Solution:**
+
 - Verify the API key starts with `re_`
 - Check for extra spaces in the key
 - Generate a new key if needed
 - Update in Render and redeploy
 
 ### Issue: "Invalid recipient"
+
 **Solution:**
+
 - Use valid email addresses
 - For testing, use `onboarding@resend.dev` as sender
 - For production, verify your domain in Resend
 
 ### Issue: "Domain not verified"
+
 **Solution:**
+
 - If using a custom domain, verify it in Resend dashboard
 - Add all DNS records (DKIM, MX if needed)
 - Wait 15-30 minutes for DNS propagation
 - Use `onboarding@resend.dev` for testing
 
 ### Issue: "Email not received"
+
 **Solution:**
+
 - Check spam/junk folder
 - Verify recipient email is correct
 - Check Resend dashboard for failed deliveries
@@ -140,12 +156,14 @@ npm start
 ## Environment Variables Summary
 
 **Development (.env file):**
+
 ```
 RESEND_API_KEY=re_your_test_key
 SENDER_EMAIL=onboarding@resend.dev
 ```
 
 **Production (Render):**
+
 ```
 RESEND_API_KEY=re_your_production_key
 SENDER_EMAIL=noreply@yourdomain.com
