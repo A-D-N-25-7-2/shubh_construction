@@ -10,11 +10,27 @@ const app = express();
    CORS CONFIGURATION
 ========================= */
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://www.shubhconstructions.com",
-  "https://shubhconstructions.com",
-];
+// Parse allowed origins from environment variable or use defaults
+const getAllowedOrigins = () => {
+  const defaultOrigins = [
+    "http://localhost:3000",
+    "http://localhost:5000",
+    "https://www.shubhconstructions.com",
+    "https://shubhconstructions.com",
+  ];
+
+  if (process.env.ALLOWED_ORIGINS) {
+    return process.env.ALLOWED_ORIGINS.split(",").map((origin) =>
+      origin.trim(),
+    );
+  }
+
+  return defaultOrigins;
+};
+
+const allowedOrigins = getAllowedOrigins();
+
+console.log("Allowed CORS Origins:", allowedOrigins);
 
 app.use(
   cors({
@@ -25,10 +41,12 @@ app.use(
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       } else {
+        console.warn(`CORS blocked request from origin: ${origin}`);
         return callback(new Error("Not allowed by CORS"));
       }
     },
     methods: ["GET", "POST"],
+    credentials: true,
   }),
 );
 

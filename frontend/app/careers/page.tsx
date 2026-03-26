@@ -45,13 +45,11 @@ const Page = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     try {
-      const res = await fetch(
-        "https://shubh-construction-v8rh.onrender.com/api/job-application",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/job-application`;
+      const res = await fetch(apiUrl, {
+        method: "POST",
+        body: formData,
+      });
       if (res.ok) {
         setMessage("Application sent successfully!");
         setError("");
